@@ -1031,11 +1031,39 @@
                 				中断
               				</button>
             			</div>
+						<div class="my-3 d-none" id="cont-ds-list">
+							<div class="text-center p-2 text-small extraSmallText text-uppercase text-muted">
+							  	选择脚本
+							</div>
+							<ul class="list-group bg-dark d-flex scrollbar scrollbar-primary" id="dsUl"></ul>
+						</div>
+						<div class="my-3">
+							<div class="text-center p-2 text-small extraSmallText text-uppercase text-muted">
+							  	已选择脚本
+							</div>
+							<div class="list-group-item bg-dark text-center">
+							  	<span id="selectedDs"></span>
+							</div>
+						</div>
+						<div class="input-group d-flex">
+							<button id="dragSelectBtn" class="btn btn-sm btn-primary m-1 flex-fill px-2 lev1active" type="button">
+							  	获取列表
+							</button>
+							<button id="dragStartBtn" class="btn btn-sm btn-primary m-1 flex-fill px-2 lev1active actBtn"
+							  	type="button">
+							  	开始
+							</button>
+							<button id="dragAbortBtn" class="btn btn-sm btn-danger m-1 flex-fill px-2 lev1active doubleConfirm"
+							  	value="DragScript Abort" type="button">
+							  	中断
+							</button>
+						</div>
           			</div>
           			<!-- Card footer -->
           			<div class="card-footer text-muted text-center mt-2">
             			序列管理器面板
           			</div>
+					
         		</div>
         		<!-- Card -->
 			</div>

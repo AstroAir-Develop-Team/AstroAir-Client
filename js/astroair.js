@@ -2598,6 +2598,109 @@
 			errorFire(message+"<br>"+error,"Remote Focus Move Error Received")
 		};
 
+		//---------计划拍摄-----------
+
+		$("#seqStartBtn").click((function(){
+			var seq=$("#selectedSeq").text();
+			""!=seq?remoteSequence(seq):errorFire("Please select Sequence file from list before.","Sequence Start Error")
+		})),
+
+		$("#seqListtBtn").click(getSequenceList),
+
+		$("#seqUl").on("click",".btSeqLi",(function(e){
+			var name=e.target.name;
+			$("#selectedSeq").text(name),
+			$("#cont-seq-list").addClass("d-none")
+		})),
+
+		$("#dragStartBtn").click((function(){
+			var ds=$("#selectedDs").text();
+			""!=ds?remoteDragScript(ds):errorFire("Please select DragScript file from list before.","DragScript Start Error")
+		})),
+
+		$("#dragSelectBtn").click(remoteGetListAvalaibleDragScript),
+
+		$("#dsUl").on("click",".btDsLi",(function(e){
+			var name=e.target.name;
+			$("#selectedDs").text(name),
+			$("#cont-ds-list").addClass("d-none")
+		}));
+
+		function remoteSequence(seqFile){
+			var Req={
+				method:"RemoteSequence",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.params.SequenceFile=seqFile,
+			Req.params.StartFlag=0,
+			Req.id=generateID(),
+			pushUid("RemoteSequence",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+
+		function getSequenceList(){
+			var Req={
+				method:"RemoteGetListAvalaibleSequence",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteGetListAvalaibleSequence",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+
+		function getSequenceListReceivedOk(list){
+			$(".seq-li").remove(),
+			$("#cont-seq-list").removeClass("d-none"),
+			list.length>0?list.forEach((function(seqItem){
+				$("#seqUl").append('<li class="list-group-item bg-dark align-items-center seq-li"><div class="row w-100"><div class="info-data-item text-left px-1 col-11 my-auto">'+seqItem+'</div><div class="col-1 my-auto p-0"><button class="btn btn-sm btn-primary m-auto flex-end px-2 py-1 btSeqLi" type="button" name="'+seqItem+'">Select</button></div></div></li>')
+			})):(errorFire("No Sequence file avaiable into the default folder!","Sequence Not Found"),$("#cont-seq-list").addClass("d-none"))
+		}
+
+		function getSequenceListReceivedError(motivo){
+			efforFire(motivo,"Get Sequence list Error!"),
+			$("#cont-seq-list").addClass("d-none")
+		}
+
+		function remoteDragScript(dsFile){
+			var Req={
+				method:"RemoteDragScript",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.params.DragScriptFile=dsFile,
+			Req.params.StartNodeUID="",
+			Req.id=generateID(),
+			pushUid("RemoteDragScript",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+
+		function remoteGetListAvalaibleDragScript(){
+			var Req={
+				method:"RemoteGetListAvalaibleDragScript",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteGetListAvalaibleDragScript",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+
+		function getDsListReceivedOk(list){
+			$(".ds-li").remove(),
+			$("#cont-ds-list").removeClass("d-none"),
+			list.length>0?list.forEach((function(dsItem){
+				$("#dsUl").append('<li class="list-group-item bg-dark align-items-center seq-li"><div class="row w-100"><div class="info-data-item text-left px-1 col-11 my-auto">'+dsItem+'</div><div class="col-1 my-auto p-0"><button class="btn btn-sm btn-primary m-auto flex-end px-2 py-1 btDsLi" type="button" name="'+dsItem+'">Select</button></div></div></li>')
+			})):(errorFire("No DragScript file avaiable into the default folder!","DragScript Not Found"),
+			$("#cont-ds-list").addClass("d-none"))
+		}
+
+		function getDsReceivedError(motivo){
+			efforFire(motivo,"Get DragScript list Error!"),
+			$("#cont-ds-list").addClass("d-none")
+		}
+
 		//---------自定义目标管理器------------
 		
 		function sendRemoteRoboClipGetTargetList(){
