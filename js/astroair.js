@@ -1608,7 +1608,7 @@
 			imgObj.StarIndex=msg.StarIndex,		//赋值
 			imgObj.HFD=msg.HFD,		//赋值	
 			imgObj.Expo=msg.Expo,		//赋值
-			imgObj.Time=timeStampUtility(msg.TimeInfo),		//赋值
+			imgObj.Time=msg.TimeInfo,		//赋值
 			imgObj.NameFile=extractNamefile(msg.File),		//赋值
 			"** BayerMatrix **"==msg.Filter?($("#Filter").text("No Filter"),imgObj.Filter="No Filter"):($("#Filter").text(msg.Filter),imgObj.Filter=msg.Filter),		//判断是否有滤镜，并显示
 			imageStatsArrayAdd(imgObj)		//写入图像状态栏
