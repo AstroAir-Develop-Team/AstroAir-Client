@@ -681,6 +681,14 @@
 			$("#cont-ds-list").addClass("d-none"),
 			$("#selectedDs").text("")
 		}
+
+		function animLogo(){
+			logoanimationaccepted?(tlLoopAnim.restart(),tlLoopAnim2.restart()):($(".st0").css({fill:"red",transition:"1.0s"}),tlStartAnim3.restart())
+		}
+
+		function stopAnimLogo(){
+			logoanimationaccepted?(tlLoopAnim.pause(),tlLoopAnim2.pause(),tlcloseAnim.play(),tlCloseAnim2.play()):($(".st0").css({fill:"#4285F4",transition:".5s"}),tlCloseAnim3.play())
+		}
 		
 		function resetShotPanel(){		//重置拍摄计划
 			shotBtnReset(),
@@ -3278,5 +3286,16 @@
 				default:errorFire("没有分配给此按钮的操作.")
 			}
 		}
-
+		var tlLoopAnim=anime.timeline({targets:"#logorotate",duration:1e3,easing:"easeInOutSine",direction:"alternate",loop:!0,autoplay:!1});
+		tlLoopAnim.add({scale:{value:1.2,duration:500,easing:"easeInOutSine"},rotate:{value:"2turn",duration:1e3}});
+		var tlcloseAnim=anime.timeline({targets:"#logorotate",duration:1e3,easing:"easeOutExpo",loop:!1,autoplay:!1});
+		tlcloseAnim.add({scale:{value:1,duration:500,easing:"easeInOutSine"},rotate:{value:"0turn",duration:1e3}});
+		var tlLoopAnim2=anime.timeline({targets:"#logorotate2",duration:2e3,easing:"easeInOutSine",direction:"alternate",loop:!0,autoplay:!1});
+		tlLoopAnim2.add({scale:{value:25,duration:1500,easing:"easeInOutSine"},rotate:{value:"3turn",duration:2e3},opacity:.1});
+		var tlCloseAnim2=anime.timeline({targets:"#logorotate2",duration:1e3,easing:"easeInOutSine",loop:!1,autoplay:!1});
+		tlCloseAnim2.add({scale:{value:.5,duration:500,easing:"easeInOutSine"},rotate:{value:"0turn",duration:1e3},opacity:1});
+		var tlStartAnim3=anime.timeline({targets:"#logorotate2",duration:1500,easing:"easeInOutSine",loop:!1,autoplay:!1});
+		tlStartAnim3.add({scale:{value:1.2,duration:1500,easing:"easeInOutSine"},opacity:.5});
+		var tlCloseAnim3=anime.timeline({targets:"#logorotate2",duration:1e3,easing:"easeInOutSine",loop:!1,autoplay:!1});
+		tlCloseAnim3.add({scale:{value:.5,duration:2e3,easing:"easeInOutSine"},opacity:1});
 		
