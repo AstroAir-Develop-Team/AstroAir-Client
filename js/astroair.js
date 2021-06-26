@@ -1643,7 +1643,8 @@
 		function loadImg64(img64str,dimX,dimY){		//加载JPG图像
 			$(function(){
 				var inImageStr,image64=img64str;
-				$("#img_preview").attr("src",image64),$("#img_preview_a").attr("href",image64);
+				$("#img_preview").attr("src",image64),
+				$("#img_preview_a").attr("href",image64);
 				var sizePx=dimX+"x"+dimY;
 				document.querySelector("#img_preview_a").setAttribute("data-size",sizePx)
 			});
@@ -2711,6 +2712,64 @@
 
 		//---------自定义目标管理器------------
 		
+		coordinateFormat = (value, unit) => {
+			var negative = 0 > value;
+			value = parseFloat(3600 * value, 10) / 3600;
+			var _intpart = parseInt(value, 10),
+				minutes = 60 * Math.abs(value - _intpart),
+				_minutes = parseInt(minutes, 10),
+				seconds,
+				_seconds = parseFloat((60 * (minutes - _minutes)).toFixed(3));
+			return `${negative && 0 === _intpart
+				? "-"
+				: ""}${_intpart}${unit} ${_minutes}' ${_seconds}"`
+		},
+		
+		coordinateFormatClear = value => {
+			var negative = 0 > value;
+			value = parseFloat(3600 * value, 10) / 3600;
+			var _intpart = parseInt(value, 10),
+				minutes = 60 * Math.abs(value - _intpart),
+				_minutes = parseInt(minutes, 10),
+				seconds,
+				_seconds = parseFloat((60 * (minutes - _minutes)).toFixed(3));
+			return `${negative && 0 === _intpart
+				? "-"
+				: ""}${_intpart} ${_minutes} ${_seconds}`
+		},
+
+		convertRainDecimal = ra => {
+			var tmp = ra.split(/[^\d\w]+/),
+				result;
+			return tmp[2] = parseFloat(tmp[2]) + parseFloat("0." + tmp[3]),
+			15 * (textFloat(tmp[0]) + textFloat(tmp[1] / 60) + textFloat(tmp[2] / 3600))
+		},
+
+		convertDecinDecimal = dec => {
+			var firstchar = dec.substr(0, 1),
+				numchar,
+				tmp = dec
+					.substr(1, dec.length)
+					.split(/[^\d\w]+/),
+				result;
+			return tmp[2] = parseFloat(tmp[2]) + parseFloat("0." + tmp[3]),
+			firstchar + (
+				textFloat(tmp[0]) + textFloat(tmp[1] / 60) + textFloat(tmp[2] / 3600)
+			)
+		};
+
+		function textInt(textVal, defaultVal) {
+			return isNaN(parseInt(textVal, 10))
+				? defaultVal
+				: parseInt(textVal, 10)
+		}
+		
+		function textFloat(textVal, defaultVal) {
+			return isNaN(parseFloat(textVal))
+				? defaultVal
+				: parseFloat(textVal)
+		}
+		
 		function sendRemoteRoboClipGetTargetList(){
 			var Req={method:"RemoteRoboClipGetTargetList",params:{}};
 			Req.params.FilterName=roboClipNameTxt,
@@ -2744,22 +2803,30 @@
 				span3.classList="info-data-item pl-1 rcDecList";
 				let dec=document.createTextNode(coordinateFormat(target.decj2000,"º"));
 				span3.appendChild(dec),span2.appendChild(ra),col2.appendChild(span2),col2.appendChild(span3);
-				let isMosaic=JSON.parse(target.ismosaic),mosaTab=isMosaic?"["+target.frow+"x"+target.fcol+"]":"[NO]",col3=document.createElement("div");
-				col3.classList="col-1",col3.setAttribute=target.tiles;
+				let isMosaic="[NO]",
+					mosaTab=isMosaic?"["+target.frow+"x"+target.fcol+"]":"[NO]",
+					col3=document.createElement("div");
+				col3.classList="col-1",
+				col3.setAttribute=target.tiles;
 				let span34=document.createElement("span");
 				span34.classList=isMosaic?"info-data-item px-1 rcPAlist text-danger":"info-data-item px-1 rcPAlist text-muted";
 				let mos=document.createTextNode(mosaTab);
-				span34.appendChild(mos),col3.appendChild(span34);
-				let col4=document.createElement("div");col4.classList="col-1";
+				span34.appendChild(mos),
+				col3.appendChild(span34);
+				let col4=document.createElement("div");
+				col4.classList="col-1";
 				let span4=document.createElement("span");
 				span4.classList="info-data-item px-1 rcPAlist";
 				let pa=document.createTextNode(target.pa);
-				span4.appendChild(pa),col4.appendChild(span4);
-				let col5=document.createElement("div");col5.classList="col";
+				span4.appendChild(pa),
+				col4.appendChild(span4);
+				let col5=document.createElement("div");
+				col5.classList="col";
 				let span5=document.createElement("span");
 				span5.classList="info-data-item rcGruppolist";
 				let gruppo=document.createTextNode(target.gruppo);
-				span5.appendChild(gruppo),col5.appendChild(span5);
+				span5.appendChild(gruppo),
+				col5.appendChild(span5);
 				let col6=document.createElement("div");
 				col6.classList="col d-none d-md-block";
 				let span6=document.createElement("span");
@@ -2785,7 +2852,8 @@
 					btn2.setAttribute("data-dest",dest),
 					btn2.setAttribute("title","Edit target");
 				let ico2=document.createElement("img");
-				ico2.setAttribute("src","./img/edit.png"),btn2.appendChild(ico2);
+				ico2.setAttribute("src","./img/edit.png"),
+				btn2.appendChild(ico2);
 				let btn3=document.createElement("button");
 				btn3.classList="btn btn-sm btn-outline-danger mx-1 flex-end px-2 py-1 btRoboClipLi",
 					btn3.setAttribute("type","button"),
@@ -2794,7 +2862,8 @@
 					btn3.setAttribute("data-dest",dest),
 					btn3.setAttribute("title","Delete target");
 				let ico3=document.createElement("img");
-				ico3.setAttribute("src","./img/trash-alt.png"),btn3.appendChild(ico3);
+				ico3.setAttribute("src","./img/trash-alt.png"),
+				btn3.appendChild(ico3);
 				let btn4=document.createElement("button");
 				btn4.classList="btn btn-sm btn-outline-orange mx-1 flex-end px-2 py-1 btRoboClipLi",
 					btn4.setAttribute("type","button"),
