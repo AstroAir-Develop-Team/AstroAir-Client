@@ -1248,7 +1248,7 @@
 			$("#resetLocalStorage").click(e=>{		//按钮监听
 					resetLocalStorageData()
 			}),
-			
+			secondDecimal = num => Math.round(100 * num) / 100;
 			lightRowFilter=(idx,col)=>{
 				let item="#focusItem"+idx,colstring=col+" !important",
 				elem=document.querySelector(item);
@@ -2799,10 +2799,16 @@
 				col2.classList="col";
 				let span2=document.createElement("span");
 				span2.classList="info-data-item pr-1 rcRaList";
-				let ra=document.createTextNode(coordinateFormat(target.raj2000,"h")),span3=document.createElement("span");
+				//let ra=document.createTextNode(coordinateFormat(target.raj2000,"h")),
+				let ra=document.createTextNode(target.raj2000),
+				span3=document.createElement("span");
 				span3.classList="info-data-item pl-1 rcDecList";
-				let dec=document.createTextNode(coordinateFormat(target.decj2000,"º"));
-				span3.appendChild(dec),span2.appendChild(ra),col2.appendChild(span2),col2.appendChild(span3);
+				//let dec=document.createTextNode(coordinateFormat(target.decj2000,"º"));
+				let dec=document.createTextNode(target.decj2000);
+				span3.appendChild(dec),
+				span2.appendChild(ra),
+				col2.appendChild(span2),
+				col2.appendChild(span3);
 				let isMosaic="[NO]",
 					mosaTab=isMosaic?"["+target.frow+"x"+target.fcol+"]":"[NO]",
 					col3=document.createElement("div");
@@ -3162,7 +3168,7 @@
 		},
 		
 		rCgetCoordsAndPa=(uid,loading=!0)=>{
-			let isLoading=loading,targetObj=roboClipTemp.find(x=>x.guid===uid),tempRa=targetObj.raj2000,tempDec=targetObj.decj2000,tempPa=targetObj.pa,tempName=targetObj.name,ismosaic=JSON.parse(targetObj.ismosaic),fcol=targetObj.fcol,frow=targetObj.frow,overlap=targetObj.overlap,angleadj=JSON.parse(targetObj.angleadj),focallen=targetObj.focallen,pixelsize=targetObj.pixelsize,dx=targetObj.dx,dy=targetObj.dy;
+			let isLoading=loading,targetObj=roboClipTemp.find(x=>x.guid===uid),tempRa=targetObj.raj2000,tempDec=targetObj.decj2000,tempPa=targetObj.pa,tempName=targetObj.name,ismosaic="[NO]",fcol=targetObj.fcol,frow=targetObj.frow,overlap=targetObj.overlap,angleadj="[NO]",focallen=targetObj.focallen,pixelsize=targetObj.pixelsize,dx=targetObj.dx,dy=targetObj.dy;
 			if(aladin.gotoRaDec(15*tempRa,tempDec),
 				getCoordinateAladin(),
 				$("#fdb-pAng").val(tempPa),
@@ -3368,3 +3374,79 @@
 		var tlCloseAnim3=anime.timeline({targets:"#logorotate2",duration:1e3,easing:"easeInOutSine",loop:!1,autoplay:!1});
 		tlCloseAnim3.add({scale:{value:.5,duration:2e3,easing:"easeInOutSine"},opacity:1});
 		
+		//--------------------导星--------------------
+
+		function remoteStartGuiding(){
+			var Req={
+				method:"RemoteStartGuiding",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteStartGuiding",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+		
+		$("#Connect").click((function(){
+			remoteStartGuiding();
+		}));
+
+		function remoteStartGuiding(){
+			var Req={
+				method:"RemoteStartGuiding",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteStartGuiding",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+		
+		$("#Guide").click((function(){
+			remoteStartGuiding();
+		}));
+
+		$("#Acquire").click((function(){
+			remoteGuiderAcquire();
+		}));
+
+		function remoteGuiderAcquire(){
+			var Req={
+				method:"RemoteGuiderAcquire",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteGuiderAcquire",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+
+		function remoteStartDither(){
+			var Req={
+				method:"RemoteDither",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteDither",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+		
+		$("#Dither").click((function(){
+			remoteStartDither();
+		}));
+
+		function remoteAbortGuiding(){
+			var Req={
+				method:"RemoteAbortGuiding",
+				params:{}
+			};
+			Req.params.UID=generateUID(),
+			Req.id=generateID(),
+			pushUid("RemoteAbortGuiding",Req.params.UID),
+			doSend(JSON.stringify(Req))
+		}
+		
+		$("#Abort").click((function(){
+			remoteAbortGuiding();
+		}));

@@ -544,45 +544,6 @@
 							<div id="animBar"></div>
 						</div>
 						<hr class="mt-2 mb-3">
-						<!--计划拍摄-->
-						<li class="list-group-item bg-dark d-flex align-items-center justify-content-between" id="collapseSeqTable">
-							<span class="text-center m-auto text-muted">计划拍摄</span>
-							<div class="f-right text-muted">
-								<svg class="svg-inline--fa fa-caret-square-down fa-w-14 pointer" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-square-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zM92.5 220.5l123 123c4.7 4.7 12.3 4.7 17 0l123-123c7.6-7.6 2.2-20.5-8.5-20.5H101c-10.7 0-16.1 12.9-8.5 20.5z"></path></svg><!-- <i class="fas fa-caret-square-down pointer"></i> -->
-							</div> 
-						</li>
-						<div id="SeqCapture" class="collapse">
-							<div class="input-group d-flex">
-								<div class="col m-1 p-0">
-									<label for="timeShot" class="active">曝光 (秒)</label>
-									<input type="number" class="form-control form-control-sm text-center bg-dark text-white border-sx-blueVoy" id="Seqex" value="1" placeholder="Exposure (s)">
-								</div>
-								<div class="col m-1 p-0">
-									<label for="SeqfilterSelect">滤镜</label>
-										<select class="browser-default custom-select custom-select-sm bg-dark text-white border-sx-blueVoy" id="Seqfilter">
-											<option value="" selected="">Filter</option>
-										</select>
-								</div>
-								<div class="col m-1 p-0">
-									<label for="SeqbinSelect">像素合并</label>
-									<select class="browser-default custom-select custom-select-sm bg-dark text-white border-sx-blueVoy" id="Seqbin">
-										<option value="1" selected="">1x1</option>
-										<option value="2">2x2</option>
-										<option value="4">4x4</option>
-									</select>
-								</div>
-							</div>
-							<div class="input-group d-flex">
-								<input type="number" class="form-control form-control-sm text-center bg-dark text-white border-sx-blueVoy m-1" id="Seqgain" placeholder="增益">
-								<input type="number" class="form-control form-control-sm text-center bg-dark text-white border-sx-blueVoy m-1" id="Seqoffset" placeholder="偏置">
-							</div>
-							<div class="d-flex">
-								<button id="SeqremoteShotbtn" class="btn btn-primary btn-sm m-1 btn-voy-item px-2 actBtn waves-effect waves-light"><svg class="svg-inline--fa fa-camera fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="camera" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z"></path></svg>拍摄</button>
-								<button id="SeqremoteShotAbortbtn" class="btn btn-danger btn-sm m-1 btn-voy-item px-2 doubleConfirm waves-effect waves-light"><svg class="svg-inline--fa fa-times fa-w-11 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>中断</button>
-							</div>
-						</div>
-                
-						<hr class="mt-2 mb-3">
 						<!--制冷部分-->
 						<h5>
 							<svg class="svg-inline--fa fa-snowflake fa-w-14 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="snowflake" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M440.3 345.2l-33.8-19.5 26-7c8.2-2.2 13.1-10.7 10.9-18.9l-4-14.9c-2.2-8.2-10.7-13.1-18.9-10.9l-70.8 19-63.9-37 63.8-36.9 70.8 19c8.2 2.2 16.7-2.7 18.9-10.9l4-14.9c2.2-8.2-2.7-16.7-10.9-18.9l-26-7 33.8-19.5c7.4-4.3 9.9-13.7 5.7-21.1L430.4 119c-4.3-7.4-13.7-9.9-21.1-5.7l-33.8 19.5 7-26c2.2-8.2-2.7-16.7-10.9-18.9l-14.9-4c-8.2-2.2-16.7 2.7-18.9 10.9l-19 70.8-62.8 36.2v-77.5l53.7-53.7c6.2-6.2 6.2-16.4 0-22.6l-11.3-11.3c-6.2-6.2-16.4-6.2-22.6 0L256 56.4V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v40.4l-19.7-19.7c-6.2-6.2-16.4-6.2-22.6 0L138.3 48c-6.3 6.2-6.3 16.4 0 22.6l53.7 53.7v77.5l-62.8-36.2-19-70.8c-2.2-8.2-10.7-13.1-18.9-10.9l-14.9 4c-8.2 2.2-13.1 10.7-10.9 18.9l7 26-33.8-19.5c-7.4-4.3-16.8-1.7-21.1 5.7L2.1 145.7c-4.3 7.4-1.7 16.8 5.7 21.1l33.8 19.5-26 7c-8.3 2.2-13.2 10.7-11 19l4 14.9c2.2 8.2 10.7 13.1 18.9 10.9l70.8-19 63.8 36.9-63.8 36.9-70.8-19c-8.2-2.2-16.7 2.7-18.9 10.9l-4 14.9c-2.2 8.2 2.7 16.7 10.9 18.9l26 7-33.8 19.6c-7.4 4.3-9.9 13.7-5.7 21.1l15.5 26.8c4.3 7.4 13.7 9.9 21.1 5.7l33.8-19.5-7 26c-2.2 8.2 2.7 16.7 10.9 18.9l14.9 4c8.2 2.2 16.7-2.7 18.9-10.9l19-70.8 62.8-36.2v77.5l-53.7 53.7c-6.3 6.2-6.3 16.4 0 22.6l11.3 11.3c6.2 6.2 16.4 6.2 22.6 0l19.7-19.7V496c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-40.4l19.7 19.7c6.2 6.2 16.4 6.2 22.6 0l11.3-11.3c6.2-6.2 6.2-16.4 0-22.6L256 387.7v-77.5l62.8 36.2 19 70.8c2.2 8.2 10.7 13.1 18.9 10.9l14.9-4c8.2-2.2 13.1-10.7 10.9-18.9l-7-26 33.8 19.5c7.4 4.3 16.8 1.7 21.1-5.7l15.5-26.8c4.3-7.3 1.8-16.8-5.6-21z"></path></svg>
@@ -835,30 +796,36 @@
 								<svg class="svg-inline--fa fa-broom fa-w-20 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="broom" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M256.47 216.77l86.73 109.18s-16.6 102.36-76.57 150.12C206.66 523.85 0 510.19 0 510.19s3.8-23.14 11-55.43l94.62-112.17c3.97-4.7-.87-11.62-6.65-9.5l-60.4 22.09c14.44-41.66 32.72-80.04 54.6-97.47 59.97-47.76 163.3-40.94 163.3-40.94zM636.53 31.03l-19.86-25c-5.49-6.9-15.52-8.05-22.41-2.56l-232.48 177.8-34.14-42.97c-5.09-6.41-15.14-5.21-18.59 2.21l-25.33 54.55 86.73 109.18 58.8-12.45c8-1.69 11.42-11.2 6.34-17.6l-34.09-42.92 232.48-177.8c6.89-5.48 8.04-15.53 2.55-22.44z"></path></svg><!-- <i class="fas fa-broom mr-1"></i> --> 清除
 							</button>
 							<canvas id="guideChart" width="407" height="203" class="chartjs-render-monitor" style="display: block; width: 407px; height: 203px;"></canvas>
-                            <div class="input-group d-flex mt-3">
-                                <button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" type="button">校准</button>
-                                <button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" type="button">Acquire</button>
-                            </div>
-                            <div class="input-group d-flex">
-                                <button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" type="button">导星</button>
-                                <button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" type="button">抖动</button>
-                                <button class="btn btn-sm btn-danger m-1 flex-fill px-2 actBtn" type="button">停止</button>
-                            </div>
 							<div class="btn-group" role="group">
 								<button type="button" class="btn btn-outline-primary reset-btn btn-sm waves-effect waves-light" id="scaleYminus"><svg class="svg-inline--fa fa-minus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-minus"></i> --></button>
-								<div class="btn btn-elegant  btn-sm waves-effect waves-light" disabled=""><span class="text-muted">尺度 </span><strong> <span id="yGuideScaleText" class="text-light">2</span> </strong><span class="text-muted"> 像素</span> </div>
-									<button type="button" class="btn btn-outline-primary reset-btn btn-sm waves-effect waves-light" id="scaleYplus"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> --></button>
-								</div>             
-								<p class="text-white-50 mt-3 mb-0 extraSmallText">导星最后误差（像素）</p>
-								<ul class="list-group bg-dark extraSmallText my-1">
-									<li class="list-group-item bg-dark d-flex align-items-center justify-content-between p-2">
-										<div class="col-2 p-0 text-muted">X</div>
-										<div class="col-4 info-data-item" id="xErrGuide"></div>
-										<div class="col-2 p-0 text-muted">Y</div>
-										<div class="col-4 info-data-item" id="yErrGuide"></div>
-									</li>
-								</ul>
+								<div class="btn btn-elegant  btn-sm waves-effect waves-light" disabled="">
+									<span class="text-muted">尺度 </span>
+									<strong> 
+										<span id="yGuideScaleText" class="text-light">2</span> 
+									</strong>
+									<span class="text-muted"> 像素</span> 
+								</div>
+								<button type="button" class="btn btn-outline-primary reset-btn btn-sm waves-effect waves-light" id="scaleYplus"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> --></button>
+							</div>             
+							<p class="text-white-50 mt-3 mb-0 extraSmallText">导星最后误差（像素）</p>
+							<ul class="list-group bg-dark extraSmallText my-1">
+								<li class="list-group-item bg-dark d-flex align-items-center justify-content-between p-2">
+									<div class="col-2 p-0 text-muted">X</div>
+									<div class="col-4 info-data-item" id="xErrGuide"></div>
+									<div class="col-2 p-0 text-muted">Y</div>
+									<div class="col-4 info-data-item" id="yErrGuide"></div>
+								</li>
+							</ul>
+							<div class="input-group d-flex mt-3">
+								<button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" id = "Connect" type="button">连接</button>
+								<button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" id = "Acquire" type="button">Acquire</button>
 							</div>
+							<div class="input-group d-flex">
+								<button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" id = "Guide" type="button">导星</button>
+								<button class="btn btn-sm btn-primary m-1 flex-fill px-2 actBtn" id = "Dither" type="button">抖动</button>
+								<button class="btn btn-sm btn-danger m-1 flex-fill px-2 actBtn" id = "Abort" type="button">停止</button>
+							</div>
+						</div>
 					</div>
 					<div class="card-footer text-muted text-center ">
 						导星面板
@@ -1470,9 +1437,7 @@
 					<!--/.Content-->
 				</div>
 			</div>
-		</div>
-
-  
+		</div>  
 	<!--左侧菜单栏-->
 	<div class="right align-items-center d-flex" id="miniMenuContainer" style="left: 4px;">
 	    <div class="card" id="miniMenu">
@@ -1561,7 +1526,6 @@
 	<script type="text/javascript" src="js/all.min.js"></script>
 	<script type="text/javascript" src="js/download.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
-	<!--<script type="text/javascript" src="js/opencv.js"></script>-->
 	<script type="text/javascript" src="js/astroair.js"></script>
 </body>
 </html>

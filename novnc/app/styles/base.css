@@ -1,7 +1,6 @@
 /*
  * noVNC base CSS
- * Copyright (C) 2019 Radek Kaczorek for Astroberry
- * Copyright (C) 2018 The noVNC Authors
+ * Copyright (C) 2019 The noVNC Authors
  * noVNC is licensed under the MPL 2.0 (see LICENSE.txt)
  * This file is licensed under the 2-Clause BSD license (see LICENSE.txt).
  */
@@ -23,8 +22,8 @@
 body {
   margin:0;
   padding:0;
-  font-family: 'Roboto Light', Arial, sans-serif;
-  font-size: 16px;
+  font-family: Helvetica;
+  /*Background image with light grey curve.*/
   background-color:black;
   background-image: url("../images/background.jpg");
   background-repeat:no-repeat;
@@ -43,7 +42,7 @@ html {
 }
 
 .noVNC_disabled {
-  color: rgb(64, 64, 64);
+  color: rgb(128, 128, 128);
 }
 
 /* ----------------------------------------
@@ -86,8 +85,20 @@ html {
  * ----------------------------------------
  */
 
-input[type=input], input[type=password], input[type=number],
-input:not([type]), textarea {
+input:not([type]),
+input[type=date],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+textarea {
   /* Disable default rendering */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -101,7 +112,11 @@ input:not([type]), textarea {
   background: linear-gradient(to top, rgb(255, 255, 255) 80%, rgb(240, 240, 240));
 }
 
-input[type=button], input[type=submit], select {
+input[type=button],
+input[type=color],
+input[type=reset],
+input[type=submit],
+select {
   /* Disable default rendering */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -119,7 +134,10 @@ input[type=button], input[type=submit], select {
   vertical-align: middle;
 }
 
-input[type=button], input[type=submit] {
+input[type=button],
+input[type=color],
+input[type=reset],
+input[type=submit] {
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -129,35 +147,72 @@ option {
   background: white;
 }
 
-input[type=input]:focus, input[type=password]:focus,
-input:not([type]):focus, input[type=button]:focus,
+input:not([type]):focus,
+input[type=button]:focus,
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=reset]:focus,
+input[type=search]:focus,
 input[type=submit]:focus,
-textarea:focus, select:focus {
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+select:focus,
+textarea:focus {
   box-shadow: 0px 0px 3px rgba(74, 144, 217, 0.5);
   border-color: rgb(74, 144, 217);
   outline: none;
 }
 
 input[type=button]::-moz-focus-inner,
+input[type=color]::-moz-focus-inner,
+input[type=reset]::-moz-focus-inner,
 input[type=submit]::-moz-focus-inner {
   border: none;
 }
 
-input[type=input]:disabled, input[type=password]:disabled,
-input:not([type]):disabled, input[type=button]:disabled,
-input[type=submit]:disabled, input[type=number]:disabled,
-textarea:disabled, select:disabled {
+input:not([type]):disabled,
+input[type=button]:disabled,
+input[type=color]:disabled,
+input[type=date]:disabled,
+input[type=datetime-local]:disabled,
+input[type=email]:disabled,
+input[type=month]:disabled,
+input[type=number]:disabled,
+input[type=password]:disabled,
+input[type=reset]:disabled,
+input[type=search]:disabled,
+input[type=submit]:disabled,
+input[type=tel]:disabled,
+input[type=text]:disabled,
+input[type=time]:disabled,
+input[type=url]:disabled,
+input[type=week]:disabled,
+select:disabled,
+textarea:disabled {
   color: rgb(128, 128, 128);
   background: rgb(240, 240, 240);
 }
 
-input[type=button]:active, input[type=submit]:active,
+input[type=button]:active,
+input[type=color]:active,
+input[type=reset]:active,
+input[type=submit]:active,
 select:active {
   border-bottom-width: 1px;
   margin-top: 3px;
 }
 
 :root:not(.noVNC_touch) input[type=button]:hover:not(:disabled),
+:root:not(.noVNC_touch) input[type=color]:hover:not(:disabled),
+:root:not(.noVNC_touch) input[type=reset]:hover:not(:disabled),
 :root:not(.noVNC_touch) input[type=submit]:hover:not(:disabled),
 :root:not(.noVNC_touch) select:hover:not(:disabled) {
   background: linear-gradient(to top, rgb(255, 255, 255), rgb(250, 250, 250));
@@ -292,7 +347,7 @@ select:active {
   transform: translateX(0);
 }
 :root.noVNC_connected #noVNC_control_bar_anchor.noVNC_idle {
-  /* opacity: 0.8; */
+  opacity: 0.8;
 }
 #noVNC_control_bar_anchor.noVNC_right {
   left: auto;
@@ -302,7 +357,9 @@ select:active {
 #noVNC_control_bar {
   position: relative;
   left: -100%;
+
   transition: 0.5s ease-in-out;
+
   background-color: rgb(110, 132, 163);
   border-radius: 0 10px 10px 0;
 
@@ -474,17 +531,22 @@ select:active {
 /* Panels */
 .noVNC_panel {
   transform: translateX(25px);
+
   transition: 0.5s ease-in-out;
+
   max-height: 100vh; /* Chrome is buggy with 100% */
   overflow-x: hidden;
   overflow-y: auto;
+
   visibility: hidden;
   opacity: 0;
+
   padding: 15px;
-  background: rgb(110, 132, 163);
+
+  background: #fff;
   border-radius: 10px;
-  color: #fff;
-  border: 0px solid #E0E0E0;
+  color: #000;
+  border: 2px solid #E0E0E0;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
 }
 .noVNC_panel.noVNC_open {
@@ -511,8 +573,6 @@ select:active {
 .noVNC_panel label {
   display: block;
   white-space: nowrap;
-  font-size: 0.8em;
-  font-weight: bold;
 }
 
 .noVNC_panel .noVNC_heading {
@@ -523,11 +583,9 @@ select:active {
   padding-right: 8px;
   color: white;
   font-size: 20px;
-  font-weight: bold;
   margin-bottom: 10px;
   white-space: nowrap;
 }
-
 .noVNC_panel .noVNC_heading img {
   vertical-align: bottom;
 }
@@ -539,11 +597,9 @@ select:active {
 /* Expanders */
 .noVNC_expander {
   cursor: pointer;
-  font-size: 0.8em;
-  font-weight: bold;
 }
 .noVNC_expander::before {
-  content: url("../images/expander_white.svg");
+  content: url("../images/expander.svg");
   display: inline-block;
   margin-right: 5px;
   transition: 0.2s ease-in-out;
@@ -555,7 +611,7 @@ select:active {
   margin: 5px;
   margin-left: 10px;
   padding: 5px;
-  /* background: rgba(0, 0, 0, 0.05); */
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
 }
 .noVNC_expander:not(.noVNC_open) ~ * {
@@ -581,12 +637,12 @@ select:active {
 }
 
 /* Extra manual keys */
-:root:not(.noVNC_connected) #noVNC_extra_keys {
+:root:not(.noVNC_connected) #noVNC_toggle_extra_keys_button {
   display: none;
 }
 
 #noVNC_modifiers {
-  background-color: rgb(110, 132, 163);
+  background-color: rgb(92, 92, 92);
   border: none;
   padding: 0 10px;
 }
@@ -624,17 +680,23 @@ select:active {
 #noVNC_settings ul {
   list-style: none;
   margin: 0px;
-  margin-bottom: 5px;
   padding: 0px;
-}
-#noVNC_settings li {
-  margin-bottom: 10px;
 }
 #noVNC_setting_port {
   width: 80px;
 }
 #noVNC_setting_path {
   width: 100px;
+}
+
+/* Version */
+
+.noVNC_version_wrapper {
+  font-size: small;
+}
+
+.noVNC_version {
+  margin-left: 1rem;
 }
 
 /* Connection Controls */
@@ -702,7 +764,7 @@ select:active {
   content: url("../images/error.svg") " ";
 }
 #noVNC_status.noVNC_status_warn {
-  background: rgba(236,188,42,0.9);
+  background: rgba(180,180,30,0.9);
 }
 #noVNC_status.noVNC_status_warn::before {
   content: url("../images/warning.svg") " ";
@@ -729,8 +791,10 @@ select:active {
   transition: 0.5s ease-in-out;
   padding: 10px;
   margin-bottom: 10px;
+
   font-size: 80px;
   text-align: center;
+
   border-radius: 5px;
 }
 @media (max-width: 440px) {
@@ -743,26 +807,25 @@ select:active {
 }
 #noVNC_connect_button {
   cursor: pointer;
+
   padding: 10px;
+
   color: white;
   background-color: rgb(110, 132, 163);
   border-radius: 12px;
+
   text-align: center;
   font-size: 20px;
-  font-weight: bold;
+
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
-}
-#noVNC_connect_button img {
-  margin-right: 10px;
-  margin-left: -10px;
 }
 #noVNC_connect_button div {
   margin: 2px;
-  padding: 20px 40px;
+  padding: 5px 30px;
   border: 1px solid rgb(83, 99, 122);
   border-bottom-width: 2px;
-  border-radius: 10px;
-  background-color:#009933;
+  border-radius: 5px;
+  background: linear-gradient(to top, rgb(110, 132, 163), rgb(99, 119, 147));
 
   /* This avoids it jumping around when :active */
   vertical-align: middle;
@@ -772,8 +835,7 @@ select:active {
   margin-top: 3px;
 }
 :root:not(.noVNC_touch) #noVNC_connect_button div:hover {
-  color: #666;
-  background-color:#aaa;
+  background: linear-gradient(to top, rgb(110, 132, 163), rgb(105, 125, 155));
 }
 
 #noVNC_connect_button img {
@@ -786,37 +848,23 @@ select:active {
  * ----------------------------------------
  */
 
-#noVNC_password_dlg {
+#noVNC_credentials_dlg {
   position: relative;
+
   transform: translateY(-50px);
 }
-#noVNC_password_dlg.noVNC_open {
+#noVNC_credentials_dlg.noVNC_open {
   transform: translateY(0);
 }
-#noVNC_password_dlg ul {
+#noVNC_credentials_dlg ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
 }
+.noVNC_hidden {
+  display: none;
+}
 
-#noVNC_password_dlg label {
-  font-size: 1.0em;
-}
-#noVNC_password_input {
-  font-size: 1.0em;
-}
-input#noVNC_password_button.noVNC_submit {
-  background: #009933;
-  font-size: 1.0em;
-  color: white;
-  border: 1px solid rgb(83, 99, 122);
-  margin-top: 5px;
-}
-:root:not(.noVNC_touch) input#noVNC_password_button.noVNC_submit:hover {
-  color: #666;
-  background-color:#aaa;
-  cursor: pointer;
-}
 
 /* ----------------------------------------
  * Main Area
@@ -835,10 +883,6 @@ input#noVNC_password_button.noVNC_submit {
 
   color: white;
   background: rgba(0, 0, 0, 0.5);
-  background-image: url("../images/background.jpg");
-  background-repeat:no-repeat;
-  background-size: cover;
-  background-position:top center;
   z-index: 50;
 
   /*display: flex;*/
@@ -863,6 +907,7 @@ input#noVNC_password_button.noVNC_submit {
 #noVNC_container {
   width: 100%;
   height: 100%;
+
 }
 
 #noVNC_keyboardinput {
@@ -878,33 +923,22 @@ input#noVNC_password_button.noVNC_submit {
 }
 
 /*Default noVNC logo.*/
-
+/* From: http://fonts.googleapis.com/css?family=Orbitron:700 */
 @font-face {
-  font-family: 'Roboto Light';
+  font-family: 'Orbitron';
   font-style: normal;
-  src: local('?'), url('../fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 700;
+  src: local('?'), url('Nasa.ttf') format('truetype');
 }
 
 .noVNC_logo {
-  color:white;
-  font-family: 'Roboto Light', Arial, sans-serif;
-  text-align:left;
-  line-height:100%;
+  color:rgb(252, 252, 253);
+  font-family: 'Orbitron', 'OrbitronTTF', sans-serif;
+  line-height:90%;
+  text-shadow: 0.1em 0.1em 0 black;
 }
 .noVNC_logo span{
-  display: block;
-  color: #f4d03f;
-  font-size: 0.4em;
-}
-
-#noVNC_logo {
-  position: absolute;
-  margin-top: 60px;
-  margin-left: 60px;
-}
-
-:root.noVNC_connected #noVNC_logo {
-  display: none;
+  color:rgb(255, 255, 255);
 }
 
 #noVNC_bell {
@@ -916,27 +950,20 @@ input#noVNC_password_button.noVNC_submit {
  * ----------------------------------------
  */
 
-@media screen and (min-width: 801px){
+@media screen and (max-width: 640px){
   #noVNC_logo {
-    font-size: 60px;
+    font-size: 150px;
   }
 }
 
-@media screen and (min-width: 601px) and (max-width: 800px) {
+@media screen and (min-width: 321px) and (max-width: 480px) {
   #noVNC_logo {
-    font-size: 40px;
+    font-size: 110px;
   }
 }
 
-@media screen and (min-width: 361px) and (max-width: 600px) {
+@media screen and (max-width: 320px) {
   #noVNC_logo {
-    font-size: 30px;
+    font-size: 90px;
   }
 }
-
-@media screen and (max-width: 360px) {
-  #noVNC_logo {
-    font-size: 30px;
-  }
-}
-

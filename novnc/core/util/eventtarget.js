@@ -1,6 +1,6 @@
 /*
  * noVNC: HTML5 VNC client
- * Copyright (C) 2018 The noVNC Authors
+ * Copyright (C) 2019 The noVNC Authors
  * Licensed under MPL 2.0 (see LICENSE.txt)
  *
  * See README.md for usage and integration instructions.
@@ -29,7 +29,7 @@ export default class EventTargetMixin {
             return true;
         }
         this._listeners.get(event.type)
-            .forEach(callback => callback.call(this, event), this);
+            .forEach(callback => callback.call(this, event));
         return !event.defaultPrevented;
     }
 }
